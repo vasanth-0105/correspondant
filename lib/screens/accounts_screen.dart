@@ -14,7 +14,8 @@ class accounts extends StatefulWidget {
 
 class _accountsState extends State<accounts> {
   var h,w;
-
+  DateTime? fromDate;
+  DateTime? toDate;
   final List<ChartData> data = [
     ChartData('Jun', 4734),
     ChartData('Jul', 5448),
@@ -29,14 +30,30 @@ class _accountsState extends State<accounts> {
     ChartData('Apr', 2595)
   ];
 
+  Future<void> selectDate(BuildContext context, bool isFromDate) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        if (isFromDate) {
+          fromDate = picked;
+        } else {
+          toDate = picked;
+        }
+      });
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     h = MediaQuery.of(context).size.height;
     w = MediaQuery.of(context).size.width;
-
-
-
 
     return Scaffold(
       appBar: appBarWidget(title: "Accounts", color: secondaryColor,),
@@ -124,7 +141,37 @@ class _accountsState extends State<accounts> {
               children: [
                 sb()
               ],
-            )
+            ),
+            SizedBox(height: h*0.02,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                crd3()
+              ],
+            ),
+            SizedBox(height: h*0.035,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: w*0.03,),
+                textwidget(text: "For a Particular Date or Year :",s1: h*0.0255,wt: FontWeight.w700)
+              ],
+            ),
+            SizedBox(height: h*0.02,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                cntr3()
+              ],
+            ),
+            SizedBox(height: h*0.03,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                crd4(txt: "Get Report",clr: primaryColor,wt: FontWeight.w600)
+              ],
+            ),
+            SizedBox(height: h*0.04,),
           ],
         ),
       ),
@@ -282,7 +329,7 @@ class _accountsState extends State<accounts> {
               child: Column(
                 children: [
                   cntr(image2: "assets/2.png",txt1: "HariBaskar",txt2: "Salary",txt3: "₹ 15,000",clr3: w1),
-                  cntr(image2: "assets/2.png",txt1: "Vasantharuban",txt2: "Fee",txt3: "₹ 35,000",clr3: r1),
+                  cntr(image2: "assets/2.png",txt1: "Vasanth",txt2: "Fee",txt3: "₹ 35,000",clr3: r1),
                   cntr(image2: "assets/2.png",txt1: "Praveen",txt2: "Bus Service",txt3: "₹ 5,000",clr3: w1),
                 ],
               ),
@@ -298,6 +345,149 @@ class _accountsState extends State<accounts> {
       ),
     );
   }
+
+
+  Card crd3({
+    Color ? clr
+}) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(h*0.02),
+      ),
+      elevation: 4,
+      child: Container(
+        height: h*0.13,
+        width: w*0.9,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(h*0.02)
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(h*0.02),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              buildFinancialItem(
+                icon: Icons.attach_money,
+                iconColor: Colors.green,
+                label: 'Income',
+                amount: '\$ 110000',
+              ),
+              buildDivider(),
+              buildFinancialItem(
+                icon: Icons.account_balance_wallet,
+                iconColor: Colors.orange,
+                label: 'Expenses',
+                amount: '\$ 40000',
+              ),
+              buildDivider(),
+              buildFinancialItem(
+                icon: Icons.money_off,
+                iconColor: Colors.red,
+                label: 'Unpaid',
+                amount: '\$ 50000',
+              ),
+              buildDivider(),
+              buildFinancialItem(
+                icon: Icons.currency_rupee,
+                iconColor: Colors.blue,
+                label: 'Balance',
+                amount: '\$ 20000',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+  }
+
+  Card crd4({
+    Color ? clr,
+    String ? txt,
+    double ? sizew,
+    FontWeight ? wt,
+  })
+  {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(h*0.01)),
+      color: clr,
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          height: h*0.055,
+          child: Padding(padding: EdgeInsets.all(h*0.012),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: h*0.01,),
+              Text(txt!,textAlign: TextAlign.center,style: GoogleFonts.poppins(
+                  fontSize: h*0.025,
+                  fontWeight: wt
+              ),),
+            ],
+          ),),
+        ),),
+    );
+  }
+
+
+
+
+  Container cntr3({
+    Color ? color2
+}){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          // From Date Picker
+          Row(
+            children: [
+              Text("From :", style: GoogleFonts.poppins(fontSize: h * 0.02)),
+              SizedBox(width: w*0.019,),
+              GestureDetector(
+                onTap: () => selectDate(context, true),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Text(
+                    fromDate != null ? "${fromDate!.day}/${fromDate!.month}/${fromDate!.year}" : "dd/mm/yyyy",
+                    style: GoogleFonts.poppins(fontSize: h * 0.018),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: w*0.02,),
+          Row(
+            children: [
+              Text("To:", style: GoogleFonts.poppins(fontSize: h * 0.02)),
+              SizedBox(width: w*0.019,),
+              GestureDetector(
+                onTap: () => selectDate(context, false),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Text(
+                    toDate != null ? "${toDate!.day}/${toDate!.month}/${toDate!.year}" : "dd/mm/yyyy",
+                    style: GoogleFonts.poppins(fontSize: h * 0.018),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
 
 
   Container cntr2({
@@ -365,6 +555,9 @@ class _accountsState extends State<accounts> {
     );
   }
 
+
+
+
   SizedBox sb({
     Color ? color
 }){
@@ -384,6 +577,47 @@ class _accountsState extends State<accounts> {
         ],
       ),
     );
+}
+
+
+Widget buildFinancialItem({
+  required IconData icon,
+  required Color iconColor,
+  required String label,
+  required String amount,
+}) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(icon, color: iconColor, size: h*0.033),
+      SizedBox(height: h*0.007),
+      Text(
+        label,
+        style: GoogleFonts.poppins(
+          fontSize: h*0.017,
+          fontWeight: FontWeight.w600,
+          color: Colors.grey[500],
+        ),
+      ),
+      Text(
+        amount,
+        style: GoogleFonts.poppins(
+          fontSize: h*0.018,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+      ),
+    ],
+  );
+}
+
+
+Widget buildDivider() {
+  return Container(
+    height: h*0.1,
+    width: 1.5,
+    color: Colors.black87,
+  );
 }
 
 
