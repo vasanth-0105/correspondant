@@ -5,7 +5,7 @@ import '../comman_color/common_colors.dart';
 PreferredSizeWidget appBarWidget({
   required String title,
   double? fontsize,
-  Color ? color,
+  Color? color,
 }) =>
     AppBar(
       backgroundColor: primaryColor,
