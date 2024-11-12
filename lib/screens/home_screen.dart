@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../comman_color/common_colors.dart';
-import 'announcement_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
