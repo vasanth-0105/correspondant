@@ -1,4 +1,4 @@
-import 'package:correspondant_application/screens/Announcement_screen.dart';
+import 'package:correspondant_application/screens/announcement_screen.dart';
 import 'package:correspondant_application/screens/accounts_screen.dart';
 import 'package:correspondant_application/screens/attendence_screen.dart';
 import 'package:correspondant_application/screens/fee_screen.dart';
@@ -9,18 +9,18 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../comman_color/common_colors.dart';
 
-class homescreen extends StatefulWidget {
-  const homescreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<homescreen> createState() => _homescreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _homescreenState extends State<homescreen> {
+class _HomeScreenState extends State<HomeScreen> {
   var h, w;
-  final List<AttendencdataType> attendenceData = [
-    AttendencdataType('2022', 3500, Colors.blue),
-    AttendencdataType('2023', 2050, Colors.red),
+  final List<AttendencedataType> attendenceData = [
+    AttendencedataType('2022', 3500, Colors.blue),
+    AttendencedataType('2023', 2050, Colors.red),
   ];
 
   @override
@@ -37,12 +37,12 @@ class _homescreenState extends State<homescreen> {
           children: <Widget>[
             Container(
               height: h * 0.045,
-              decoration: BoxDecoration(color: primaryColor),
+              decoration: const BoxDecoration(color: primaryColor),
             ),
             list(text1: "Menu", size: h * 0.03, clr: primaryColor),
-            list(icon: Icon(Icons.home), text1: "Home"),
-            Spacer(),
-            list(icon: Icon(Icons.logout), text1: "Logout"),
+            list(icon: const Icon(Icons.home), text1: "Home"),
+            const Spacer(),
+            list(icon: const Icon(Icons.logout), text1: "Logout"),
             SizedBox(
               height: h * 0.01,
             )
@@ -85,7 +85,7 @@ class _homescreenState extends State<homescreen> {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
-                            offset: Offset(0, 4),
+                            offset: const Offset(0, 4),
                             blurRadius: 8,
                           ),
                         ],
@@ -118,9 +118,9 @@ class _homescreenState extends State<homescreen> {
                 ),
                 Positioned(
                   top: -25,
-                  child: Image.asset('assets/7.png'),
                   height: 230,
                   width: 180,
+                  child: Image.asset('assets/7.png'),
                 ),
 // Text Box
               ],
@@ -135,7 +135,7 @@ class _homescreenState extends State<homescreen> {
                 t4: "Absent : 2050",
                 t5: "Present : 60%",
                 t6: "Absent : 40%",
-                cl: Color(0xFF0494FD)),
+                cl: const Color(0xFF0494FD)),
             SizedBox(
               height: h * 0.005,
             ),
@@ -152,11 +152,11 @@ class _homescreenState extends State<homescreen> {
                     cl1: secondaryColor,
                     cl: primaryColor,
                     s1: h * 0.0165,
-                    onprs: () {
+                    onpressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => feeDetails()));
+                              builder: (context) => const FeeDetails()));
                     }),
                 first(
                     t1: "Accounts Overview :",
@@ -165,9 +165,9 @@ class _homescreenState extends State<homescreen> {
                     cl1: secondaryColor,
                     cl: primaryColor,
                     s1: h * 0.017,
-                    onprs: () {
+                    onpressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => accounts()));
+                          MaterialPageRoute(builder: (context) => const Accounts()));
                     })
               ],
             ),
@@ -180,9 +180,9 @@ class _homescreenState extends State<homescreen> {
                 cl1: secondaryColor,
                 s1: h * 0.019,
                 cl: primaryColor,
-                onprs: () {
+                onpressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => announcement()));
+                      MaterialPageRoute(builder: (context) => const Announcement()));
                 })
           ],
         ),
@@ -211,7 +211,7 @@ class _homescreenState extends State<homescreen> {
       required Color cl,
       required Color cl1,
       required double s1,
-      void Function()? onprs}) {
+      void Function()? onpressed}) {
     return Card(
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
@@ -233,7 +233,7 @@ class _homescreenState extends State<homescreen> {
               borderRadius: BorderRadius.circular(h * 0.01),
             ),
             child: Padding(
-                padding: EdgeInsets.all(9),
+                padding: const EdgeInsets.all(9),
                 child: Column(
                   children: [
                     Row(
@@ -269,7 +269,7 @@ class _homescreenState extends State<homescreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                            onPressed: onprs,
+                            onPressed: onpressed,
                             icon: Icon(
                               Icons.arrow_circle_right,
                               size: h * 0.041,
@@ -289,7 +289,7 @@ class _homescreenState extends State<homescreen> {
       required Color cl,
       required Color cl1,
       required double s1,
-      void Function()? onprs}) {
+      void Function()? onpressed}) {
     return Card(
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
@@ -311,7 +311,7 @@ class _homescreenState extends State<homescreen> {
               borderRadius: BorderRadius.circular(h * 0.01),
             ),
             child: Padding(
-                padding: EdgeInsets.fromLTRB(9, 9, 9, 2),
+                padding: const EdgeInsets.fromLTRB(9, 9, 9, 2),
                 child: Column(
                   children: [
                     Row(
@@ -332,7 +332,7 @@ class _homescreenState extends State<homescreen> {
                         SizedBox(
                           width: w * 0.1,
                         ),
-                        Container(
+                        SizedBox(
                           height: h * 0.07,
                           width: w * 0.7,
                           child: SingleChildScrollView(
@@ -357,7 +357,7 @@ class _homescreenState extends State<homescreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                            onPressed: onprs,
+                            onPressed: onpressed,
                             icon: Icon(
                               Icons.arrow_circle_right,
                               size: h * 0.041,
@@ -400,7 +400,7 @@ class _homescreenState extends State<homescreen> {
             borderRadius: BorderRadius.circular(h * 0.01),
           ),
           child: Padding(
-              padding: EdgeInsets.all(9),
+              padding: const EdgeInsets.all(9),
               child: Column(
                 children: [
                   Row(
@@ -425,17 +425,17 @@ class _homescreenState extends State<homescreen> {
                             width: w * 0.3,
                             child: SfCircularChart(
                               series: <CircularSeries>[
-                                DoughnutSeries<AttendencdataType, String>(
+                                DoughnutSeries<AttendencedataType, String>(
                                   dataSource: attendenceData,
-                                  xValueMapper: (AttendencdataType data, _) =>
+                                  xValueMapper: (AttendencedataType data, _) =>
                                       data.status,
-                                  yValueMapper: (AttendencdataType data, _) =>
+                                  yValueMapper: (AttendencedataType data, _) =>
                                       data.value,
                                   pointColorMapper:
-                                      (AttendencdataType data, _) => data.color,
+                                      (AttendencedataType data, _) => data.color,
                                   innerRadius: '60%',
                                   dataLabelSettings:
-                                      DataLabelSettings(isVisible: false),
+                                      const DataLabelSettings(isVisible: false),
                                 ),
                               ],
                             ),
@@ -517,7 +517,7 @@ class _homescreenState extends State<homescreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => attendence()));
+                                        builder: (context) => const Attendence()));
                               },
                               icon: Icon(
                                 Icons.arrow_circle_right,
@@ -541,7 +541,7 @@ class _homescreenState extends State<homescreen> {
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       color: clr,
-      child: Container(
+      child: SizedBox(
         height: h * 0.05,
         width: w * 0.3,
         child: Column(
@@ -562,10 +562,10 @@ class _homescreenState extends State<homescreen> {
   }
 }
 
-class AttendencdataType {
+class AttendencedataType {
   final String status;
   final double value;
   final Color color;
 
-  AttendencdataType(this.status, this.value, this.color);
+  AttendencedataType(this.status, this.value, this.color);
 }

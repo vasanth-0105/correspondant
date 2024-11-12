@@ -4,17 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import '../comman_color/common_colors.dart';
 import '../widgets/appbar_widget.dart';
 
-class feeDetails extends StatefulWidget {
-  const feeDetails({super.key});
+class FeeDetails extends StatefulWidget {
+  const FeeDetails({super.key});
 
   @override
-  State<feeDetails> createState() => _feeDetailsState();
+  State<FeeDetails> createState() => _FeeDetailsState();
 }
 
-class _feeDetailsState extends State<feeDetails> {
+class _FeeDetailsState extends State<FeeDetails> {
   var h, w;
   String? selectedValue;
-  final List<String> Items = ['Select', 'Paid', 'Partially Paid', 'Overdue'];
+  final List<String> items = ['Select', 'Paid', 'Partially Paid', 'Overdue'];
   @override
   Widget build(BuildContext context) {
     h = MediaQuery.of(context).size.height;
@@ -90,7 +90,7 @@ class _feeDetailsState extends State<feeDetails> {
                 text2: "Paid",
                 text3: "Rs.13,000",
                 size1: h * 0.022,
-                fonttwt1: FontWeight.w500),
+                fontwt1: FontWeight.w500),
             SizedBox(
               height: h * 0.005,
             ),
@@ -99,7 +99,7 @@ class _feeDetailsState extends State<feeDetails> {
                 text2: "Paid",
                 text3: "Rs.13,000",
                 size1: h * 0.022,
-                fonttwt1: FontWeight.w500),
+                fontwt1: FontWeight.w500),
             SizedBox(
               height: h * 0.005,
             ),
@@ -108,7 +108,7 @@ class _feeDetailsState extends State<feeDetails> {
                 text2: "Paid",
                 text3: "Rs.13,000",
                 size1: h * 0.022,
-                fonttwt1: FontWeight.w500)
+                fontwt1: FontWeight.w500)
           ],
         ),
       ),
@@ -125,13 +125,13 @@ class _feeDetailsState extends State<feeDetails> {
       width: w * 0.9,
       child: DropdownButton<String>(
         isExpanded: true,
-        value: selectedValue ?? Items[0],
+        value: selectedValue ?? items[0],
         onChanged: (String? newValue) {
           setState(() {
             selectedValue = newValue;
           });
         },
-        items: Items.map<DropdownMenuItem<String>>((String value) {
+        items: items.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Padding(
@@ -141,7 +141,7 @@ class _feeDetailsState extends State<feeDetails> {
           );
         }).toList(),
         style: GoogleFonts.poppins(color: Colors.black, fontSize: h * 0.018),
-        icon: Icon(Icons.arrow_drop_down),
+        icon: const Icon(Icons.arrow_drop_down),
         alignment: Alignment.center,
         underline: Container(
           color: Colors.black,
@@ -157,7 +157,7 @@ class _feeDetailsState extends State<feeDetails> {
     String? text3,
     String? text4,
     double? size1,
-    FontWeight? fonttwt1,
+    FontWeight? fontwt1,
   }) {
     return Card(
         shape: RoundedRectangleBorder(
@@ -187,7 +187,7 @@ class _feeDetailsState extends State<feeDetails> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage("assets/2.png"),
+                        backgroundImage: const AssetImage("assets/2.png"),
                         radius: h * 0.032,
                         backgroundColor: Colors.transparent,
                       ),
@@ -201,7 +201,7 @@ class _feeDetailsState extends State<feeDetails> {
                     children: [
                       Row(
                         children: [
-                          textwidget(text: text1!, s1: size1, wt: fonttwt1),
+                          textwidget(text: text1!, s1: size1, wt: fontwt1),
                         ],
                       ),
                       Row(
@@ -220,7 +220,7 @@ class _feeDetailsState extends State<feeDetails> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      textwidget(text: text2!, s1: size1, wt: fonttwt1)
+                      textwidget(text: text2!, s1: size1, wt: fontwt1)
                     ],
                   ),
                   SizedBox(
@@ -229,7 +229,7 @@ class _feeDetailsState extends State<feeDetails> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      textwidget(text: text3!, s1: size1, wt: fonttwt1)
+                      textwidget(text: text3!, s1: size1, wt: fontwt1)
                     ],
                   ),
                   Column(
@@ -278,7 +278,7 @@ class _feeDetailsState extends State<feeDetails> {
         ),
         content: Row(
           children: [
-            Container(
+            SizedBox(
                 height: h * 0.3,
                 width: w * 0.67,
                 child: Column(
@@ -363,7 +363,7 @@ class _feeDetailsState extends State<feeDetails> {
       color: clr,
       child: InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           height: h * 0.05,
           width: sizew,
           child: Row(

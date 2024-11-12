@@ -4,14 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../comman_color/common_colors.dart';
 import '../widgets/appbar_widget.dart';
 
-class announcement extends StatefulWidget {
-  const announcement({super.key});
+class Announcement extends StatefulWidget {
+  const Announcement({super.key});
 
   @override
-  State<announcement> createState() => _announcementState();
+  State<Announcement> createState() => _AnnouncementState();
 }
 
-class _announcementState extends State<announcement> {
+class _AnnouncementState extends State<Announcement> {
   var h, w;
   bool isStudentChecked = false;
   bool isStaffChecked = false;
@@ -36,7 +36,7 @@ class _announcementState extends State<announcement> {
             list(
                 icon: const Icon(Icons.home),
                 text1: "Home",
-                onprs: () {
+                onpressed: () {
                   Navigator.pop(context);
                   Navigator.pop(context);
                 }),
@@ -171,102 +171,96 @@ class _announcementState extends State<announcement> {
     );
   }
 
-  Container cntr1({
+  Column cntr1({
     required String txt1,
   }) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                width: w * 0.2,
-              ),
-              textwidget(text: txt1, s1: h * 0.02, wt: FontWeight.w700),
-              SizedBox(
-                width: w * 0.01,
-              ),
-              Container(
-                width: w * 0.6,
-                child: TextField(
-                  decoration: InputDecoration(
-                      isDense: true,
-                      labelText: "Title",
-                      labelStyle: GoogleFonts.poppins(),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(h * 0.01),
-                      )),
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container cntr2({Color? clr}) {
-    return Container(
-      child: Row(
-        children: [
-          SizedBox(
-            width: w * 0.08,
-          ),
-          textwidget(text: "Category :", s1: h * 0.02, wt: FontWeight.w700),
-          Checkbox(
-            value: isStudentChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isStudentChecked = value!;
-              });
-            },
-          ),
-          textwidget(text: "Student", s1: h * 0.0185),
-          Checkbox(
-            value: isStaffChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isStaffChecked = value!;
-              });
-            },
-          ),
-          textwidget(text: "Staff", s1: h * 0.0185),
-          Checkbox(
-            value: isBothChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isBothChecked = value!;
-              });
-            },
-          ),
-          textwidget(text: "Both", s1: h * 0.0185),
-        ],
-      ),
-    );
-  }
-
-  Container cntr3({Color? clr}) {
-    return Container(
-      child: Row(
-        children: [
-          SizedBox(
-            width: w * 0.2,
-          ),
-          Container(
-            width: w * 0.75,
-            child: TextField(
-              maxLines: 2,
-              decoration: InputDecoration(
-                  isDense: true,
-                  hintText: "Type Here....",
-                  hintStyle: GoogleFonts.poppins(),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(h * 0.01),
-                  )),
+    return Column(
+      children: [
+        Row(
+          children: [
+            SizedBox(
+              width: w * 0.2,
             ),
-          )
-        ],
-      ),
+            textwidget(text: txt1, s1: h * 0.02, wt: FontWeight.w700),
+            SizedBox(
+              width: w * 0.01,
+            ),
+            SizedBox(
+              width: w * 0.6,
+              child: TextField(
+                decoration: InputDecoration(
+                    isDense: true,
+                    labelText: "Title",
+                    labelStyle: GoogleFonts.poppins(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(h * 0.01),
+                    )),
+              ),
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Row cntr2({Color? clr}) {
+    return Row(
+      children: [
+        SizedBox(
+          width: w * 0.08,
+        ),
+        textwidget(text: "Category :", s1: h * 0.02, wt: FontWeight.w700),
+        Checkbox(
+          value: isStudentChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isStudentChecked = value!;
+            });
+          },
+        ),
+        textwidget(text: "Student", s1: h * 0.0185),
+        Checkbox(
+          value: isStaffChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isStaffChecked = value!;
+            });
+          },
+        ),
+        textwidget(text: "Staff", s1: h * 0.0185),
+        Checkbox(
+          value: isBothChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isBothChecked = value!;
+            });
+          },
+        ),
+        textwidget(text: "Both", s1: h * 0.0185),
+      ],
+    );
+  }
+
+  Row cntr3({Color? clr}) {
+    return Row(
+      children: [
+        SizedBox(
+          width: w * 0.2,
+        ),
+        SizedBox(
+          width: w * 0.75,
+          child: TextField(
+            maxLines: 2,
+            decoration: InputDecoration(
+                isDense: true,
+                hintText: "Type Here....",
+                hintStyle: GoogleFonts.poppins(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(h * 0.01),
+                )),
+          ),
+        )
+      ],
     );
   }
 
@@ -279,7 +273,7 @@ class _announcementState extends State<announcement> {
       color: clr,
       child: InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           height: h * 0.05,
           width: sizew,
           child: Row(
@@ -305,7 +299,7 @@ class _announcementState extends State<announcement> {
       String? text1,
       double? size,
       Color? clr,
-      void Function()? onprs}) {
+      void Function()? onpressed}) {
     return ListTile(
       leading: icon,
       title: Text(
@@ -314,7 +308,7 @@ class _announcementState extends State<announcement> {
           fontSize: size,
         ),
       ),
-      onTap: onprs,
+      onTap: onpressed,
       tileColor: clr,
     );
   }
@@ -346,7 +340,7 @@ class _announcementState extends State<announcement> {
               borderRadius: BorderRadius.circular(h * 0.01),
             ),
             child: Padding(
-                padding: EdgeInsets.fromLTRB(9, 9, 9, 2),
+                padding: const EdgeInsets.fromLTRB(9, 9, 9, 2),
                 child: Column(
                   children: [
                     Row(
@@ -367,7 +361,7 @@ class _announcementState extends State<announcement> {
                         SizedBox(
                           width: w * 0.07,
                         ),
-                        Container(
+                        SizedBox(
                           height: h * 0.07,
                           width: w * 0.69,
                           child: SingleChildScrollView(

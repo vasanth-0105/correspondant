@@ -4,14 +4,14 @@ import 'package:correspondant_application/widgets/textwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class attendence extends StatefulWidget {
-  const attendence({super.key});
+class Attendence extends StatefulWidget {
+  const Attendence({super.key});
 
   @override
-  State<attendence> createState() => _attendenceState();
+  State<Attendence> createState() => _AttendenceState();
 }
 
-class _attendenceState extends State<attendence> {
+class _AttendenceState extends State<Attendence> {
   var h, w;
   DateTime? fromDate;
   DateTime? toDate;
@@ -90,18 +90,18 @@ class _attendenceState extends State<attendence> {
           children: <Widget>[
             Container(
               height: h * 0.045,
-              decoration: BoxDecoration(color: primaryColor),
+              decoration: const BoxDecoration(color: primaryColor),
             ),
             list(text1: "Menu", size: h * 0.03, clr: primaryColor),
             list(
-                icon: Icon(Icons.home),
+                icon: const Icon(Icons.home),
                 text1: "Home",
                 onprs: () {
                   Navigator.pop(context);
                   Navigator.pop(context);
                 }),
-            Spacer(),
-            list(icon: Icon(Icons.logout), text1: "Logout"),
+            const Spacer(),
+            list(icon: const Icon(Icons.logout), text1: "Logout"),
             SizedBox(
               height: h * 0.01,
             )
@@ -142,49 +142,47 @@ class _attendenceState extends State<attendence> {
     return Column(children: [
       Padding(
         padding: EdgeInsets.all(h * 0.0135),
-        child: Container(
-          child: Table(
-            border: TableBorder.all(),
-            columnWidths: {
-              0: FlexColumnWidth(0.7),
-              1: FlexColumnWidth(1.8),
-              2: FlexColumnWidth(2.3),
-              3: FlexColumnWidth(1.7),
-            },
-            children: [
-              tableRow(
-                  t1: "S.No",
-                  t2: "Name",
-                  t3: "Class & Section",
-                  t4: "Date",
-                  t5: "Status",
-                  fontweight: FontWeight.bold),
-              tableRow(
-                  t1: "1",
-                  t2: "John Doe",
-                  t3: "VII-C",
-                  t4: "22/10/2024",
-                  t5: "Present"),
-              tableRow(
-                  t1: "2",
-                  t2: "Jane Smith",
-                  t3: "X-A",
-                  t4: "22/10/2024",
-                  t5: "Absent"),
-              tableRow(
-                  t1: "3",
-                  t2: "Jimmy",
-                  t3: "V-B",
-                  t4: "22/10/2024",
-                  t5: "Absent"),
-              tableRow(
-                  t1: "4",
-                  t2: "Hari",
-                  t3: "X-C",
-                  t4: "22/10/2024",
-                  t5: "Present")
-            ],
-          ),
+        child: Table(
+          border: TableBorder.all(),
+          columnWidths: const {
+            0: FlexColumnWidth(0.7),
+            1: FlexColumnWidth(1.8),
+            2: FlexColumnWidth(2.3),
+            3: FlexColumnWidth(1.7),
+          },
+          children: [
+            tableRow(
+                t1: "S.No",
+                t2: "Name",
+                t3: "Class & Section",
+                t4: "Date",
+                t5: "Status",
+                fontweight: FontWeight.bold),
+            tableRow(
+                t1: "1",
+                t2: "John Doe",
+                t3: "VII-C",
+                t4: "22/10/2024",
+                t5: "Present"),
+            tableRow(
+                t1: "2",
+                t2: "Jane Smith",
+                t3: "X-A",
+                t4: "22/10/2024",
+                t5: "Absent"),
+            tableRow(
+                t1: "3",
+                t2: "Jimmy",
+                t3: "V-B",
+                t4: "22/10/2024",
+                t5: "Absent"),
+            tableRow(
+                t1: "4",
+                t2: "Hari",
+                t3: "X-C",
+                t4: "22/10/2024",
+                t5: "Present")
+          ],
         ),
       )
     ]);
@@ -269,7 +267,7 @@ class _attendenceState extends State<attendence> {
       color: clr,
       child: InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           height: h * 0.05,
           width: sizew,
           child: Row(
@@ -306,7 +304,7 @@ class _attendenceState extends State<attendence> {
       color: clr,
       child: InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           height: h * 0.05,
           width: sizew,
           child: Row(
@@ -397,7 +395,7 @@ class _attendenceState extends State<attendence> {
                               }).toList(),
                               style: GoogleFonts.poppins(
                                   color: Colors.black, fontSize: 16),
-                              icon: Icon(Icons.arrow_drop_down),
+                              icon: const Icon(Icons.arrow_drop_down),
                               underline: Container(
                                 color: Colors.black,
                               ),
@@ -454,7 +452,7 @@ class _attendenceState extends State<attendence> {
                                   }).toList(),
                                   style: GoogleFonts.poppins(
                                       color: Colors.black, fontSize: 16),
-                                  icon: Icon(Icons.arrow_drop_down),
+                                  icon: const Icon(Icons.arrow_drop_down),
                                   underline: Container(
                                     color: Colors.black,
                                   ),
@@ -464,7 +462,7 @@ class _attendenceState extends State<attendence> {
                           ),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Column(
                         children: [
                           Row(
@@ -506,7 +504,7 @@ class _attendenceState extends State<attendence> {
                                   }).toList(),
                                   style: GoogleFonts.poppins(
                                       color: Colors.black, fontSize: 16),
-                                  icon: Icon(Icons.arrow_drop_down),
+                                  icon: const Icon(Icons.arrow_drop_down),
                                   underline: Container(
                                     color: Colors.black,
                                   ),
@@ -583,7 +581,7 @@ class _attendenceState extends State<attendence> {
                         onTap: () => selectDate1(context, true),
                         child: Container(
                           padding:
-                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: Colors.grey),
@@ -615,7 +613,7 @@ class _attendenceState extends State<attendence> {
                           GestureDetector(
                             onTap: () => selectDate(context, true),
                             child: Container(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
@@ -642,7 +640,7 @@ class _attendenceState extends State<attendence> {
                           GestureDetector(
                             onTap: () => selectDate(context, false),
                             child: Container(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),

@@ -1,7 +1,6 @@
 import 'package:correspondant_application/comman_color/common_colors.dart';
-import 'package:correspondant_application/screens/Announcement_screen.dart';
+import 'package:correspondant_application/screens/announcement_screen.dart';
 import 'package:correspondant_application/screens/accounts_screen.dart';
-import 'package:correspondant_application/screens/attendence_screen.dart';
 import 'package:correspondant_application/screens/fee_screen.dart';
 import 'package:correspondant_application/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   var index = 0;
-  List Screen = [homescreen(), feeDetails(), accounts(), announcement()];
+  List Screen = [const HomeScreen(), const FeeDetails(), const Accounts(), const Announcement()];
   int i = 0;
 
   @override
@@ -31,7 +30,7 @@ class _BottomBarState extends State<BottomBar> {
             i = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: "Home"),
           BottomNavigationBarItem(

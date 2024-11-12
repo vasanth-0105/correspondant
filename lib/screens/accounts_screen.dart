@@ -5,14 +5,14 @@ import '../comman_color/common_colors.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/textwidget.dart';
 
-class accounts extends StatefulWidget {
-  const accounts({super.key});
+class Accounts extends StatefulWidget {
+  const Accounts({super.key});
 
   @override
-  State<accounts> createState() => _accountsState();
+  State<Accounts> createState() => _AccountsState();
 }
 
-class _accountsState extends State<accounts> {
+class _AccountsState extends State<Accounts> {
   var h, w;
   DateTime? fromDate;
   DateTime? toDate;
@@ -69,7 +69,7 @@ class _accountsState extends State<accounts> {
             list(
                 icon: const Icon(Icons.home),
                 text1: "Home",
-                onprs: () {
+                onpressed: () {
                   Navigator.pop(context);
                   Navigator.pop(context);
                 }),
@@ -227,7 +227,7 @@ class _accountsState extends State<accounts> {
       String? text1,
       double? size,
       Color? clr,
-      void Function()? onprs}) {
+      void Function()? onpressed}) {
     return ListTile(
       leading: icon,
       title: Text(
@@ -236,7 +236,7 @@ class _accountsState extends State<accounts> {
           fontSize: size,
         ),
       ),
-      onTap: onprs,
+      onTap: onpressed,
       tileColor: clr,
     );
   }
@@ -247,7 +247,7 @@ class _accountsState extends State<accounts> {
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       color: clr,
-      child: Container(
+      child: SizedBox(
         height: h * 0.05,
         width: w * 0.3,
         child: Column(
@@ -291,9 +291,9 @@ class _accountsState extends State<accounts> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      child: Image.asset(imagePath),
+                    SizedBox(
                       width: w * 0.12,
+                      child: Image.asset(imagePath),
                     ),
                     textwidget(text: text1!, s1: h * 0.025, wt: FontWeight.w700)
                   ],
@@ -332,9 +332,9 @@ class _accountsState extends State<accounts> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    child: Image.asset("assets/8.png"),
+                  SizedBox(
                     width: w * 0.14,
+                    child: Image.asset("assets/8.png"),
                   ),
                   textwidget(
                       text: "Latest Insights",
@@ -346,7 +346,7 @@ class _accountsState extends State<accounts> {
             SizedBox(
               height: h * 0.013,
             ),
-            Container(
+            SizedBox(
               height: h * 0.189,
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -412,28 +412,28 @@ class _accountsState extends State<accounts> {
                 icon: Icons.attach_money,
                 iconColor: Colors.green,
                 label: 'Income',
-                amount: '\₹ 110000',
+                amount: '₹ 110000',
               ),
               buildDivider(),
               buildFinancialItem(
                 icon: Icons.account_balance_wallet,
                 iconColor: Colors.orange,
                 label: 'Expenses',
-                amount: '\₹ 40000',
+                amount: '₹ 40000',
               ),
               buildDivider(),
               buildFinancialItem(
                 icon: Icons.money_off,
                 iconColor: Colors.red,
                 label: 'Unpaid',
-                amount: '\₹ 50000',
+                amount: '₹ 50000',
               ),
               buildDivider(),
               buildFinancialItem(
                 icon: Icons.currency_rupee,
                 iconColor: Colors.blue,
                 label: 'Balance',
-                amount: '\₹ 20000',
+                amount: '₹ 20000',
               ),
             ],
           ),
@@ -455,7 +455,7 @@ class _accountsState extends State<accounts> {
       color: clr,
       child: InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           height: h * 0.055,
           child: Padding(
             padding: EdgeInsets.all(h * 0.012),
@@ -479,129 +479,123 @@ class _accountsState extends State<accounts> {
     );
   }
 
-  Container cntr3({Color? color2}) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          // From Date Picker
-          Row(
-            children: [
-              Text("From :", style: GoogleFonts.poppins(fontSize: h * 0.02)),
-              SizedBox(
-                width: w * 0.019,
-              ),
-              GestureDetector(
-                onTap: () => selectDate(context, true),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Text(
-                    fromDate != null
-                        ? "${fromDate!.day}/${fromDate!.month}/${fromDate!.year}"
-                        : "dd/mm/yyyy",
-                    style: GoogleFonts.poppins(fontSize: h * 0.018),
-                  ),
+  Row cntr3({Color? color2}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        // From Date Picker
+        Row(
+          children: [
+            Text("From :", style: GoogleFonts.poppins(fontSize: h * 0.02)),
+            SizedBox(
+              width: w * 0.019,
+            ),
+            GestureDetector(
+              onTap: () => selectDate(context, true),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Text(
+                  fromDate != null
+                      ? "${fromDate!.day}/${fromDate!.month}/${fromDate!.year}"
+                      : "dd/mm/yyyy",
+                  style: GoogleFonts.poppins(fontSize: h * 0.018),
                 ),
               ),
+            ),
+          ],
+        ),
+        SizedBox(
+          width: w * 0.02,
+        ),
+        Row(
+          children: [
+            Text("To:", style: GoogleFonts.poppins(fontSize: h * 0.02)),
+            SizedBox(
+              width: w * 0.019,
+            ),
+            GestureDetector(
+              onTap: () => selectDate(context, false),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Text(
+                  toDate != null
+                      ? "${toDate!.day}/${toDate!.month}/${toDate!.year}"
+                      : "dd/mm/yyyy",
+                  style: GoogleFonts.poppins(fontSize: h * 0.018),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Row cntr2({
+    required String t1,
+  }) {
+    return Row(
+      children: [
+        Container(
+          height: h * 0.02,
+          width: w * 0.035,
+          decoration: const BoxDecoration(color: primaryColor),
+        ),
+        SizedBox(
+          width: w * 0.01,
+        ),
+        Text(
+          t1,
+          style: GoogleFonts.poppins(fontSize: h * 0.019),
+        )
+      ],
+    );
+  }
+
+  Padding cntr(
+      {Color? clr3, String? txt1, String? txt2, String? txt3, String? image2}) {
+    return Padding(
+      padding: EdgeInsets.all(h * 0.01),
+      child: Row(
+        children: [
+          SizedBox(
+            width: w * 0.03,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(image2!),
+                radius: h * 0.035,
+                backgroundColor: Colors.transparent,
+              ),
             ],
+          ),
+          const Spacer(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              textwidget(text: txt1!, s1: h * 0.025),
+              textwidget(text: txt2!, s1: h * 0.02)
+            ],
+          ),
+          const Spacer(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [textwidget(text: txt3!, s1: h * 0.02, color: clr3)],
           ),
           SizedBox(
             width: w * 0.02,
-          ),
-          Row(
-            children: [
-              Text("To:", style: GoogleFonts.poppins(fontSize: h * 0.02)),
-              SizedBox(
-                width: w * 0.019,
-              ),
-              GestureDetector(
-                onTap: () => selectDate(context, false),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Text(
-                    toDate != null
-                        ? "${toDate!.day}/${toDate!.month}/${toDate!.year}"
-                        : "dd/mm/yyyy",
-                    style: GoogleFonts.poppins(fontSize: h * 0.018),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container cntr2({
-    required String t1,
-  }) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            height: h * 0.02,
-            width: w * 0.035,
-            decoration: const BoxDecoration(color: primaryColor),
-          ),
-          SizedBox(
-            width: w * 0.01,
-          ),
-          Text(
-            t1,
-            style: GoogleFonts.poppins(fontSize: h * 0.019),
           )
         ],
-      ),
-    );
-  }
-
-  Container cntr(
-      {Color? clr3, String? txt1, String? txt2, String? txt3, String? image2}) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.all(h * 0.01),
-        child: Row(
-          children: [
-            SizedBox(
-              width: w * 0.03,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage(image2!),
-                  radius: h * 0.035,
-                  backgroundColor: Colors.transparent,
-                ),
-              ],
-            ),
-            Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                textwidget(text: txt1!, s1: h * 0.025),
-                textwidget(text: txt2!, s1: h * 0.02)
-              ],
-            ),
-            Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [textwidget(text: txt3!, s1: h * 0.02, color: clr3)],
-            ),
-            SizedBox(
-              width: w * 0.02,
-            )
-          ],
-        ),
       ),
     );
   }
@@ -611,14 +605,14 @@ class _accountsState extends State<accounts> {
       height: h * 0.35,
       width: w * 0.95,
       child: SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
+        primaryXAxis: const CategoryAxis(),
         series: <CartesianSeries>[
           ColumnSeries<ChartData, String>(
             dataSource: data,
             xValueMapper: (ChartData data, _) => data.category,
             yValueMapper: (ChartData data, _) => data.value,
             color: primaryColor,
-            dataLabelSettings: DataLabelSettings(isVisible: true),
+            dataLabelSettings: const DataLabelSettings(isVisible: true),
           ),
         ],
       ),
