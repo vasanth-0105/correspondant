@@ -89,7 +89,7 @@ class _AccountsState extends State<Accounts> {
               height: h * 0.03,
             ),
             Row(
-              children: [crd(clr: primaryColor, txt: "Details :")],
+              children: [build_firstCard(clr: primaryColor, txt: "Details :")],
             ),
             SizedBox(
               height: h * 0.04,
@@ -124,11 +124,11 @@ class _AccountsState extends State<Accounts> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                crd1(
+                build_secondCard(
                     text1: "Income",
                     text2: "Rs.55,000",
                     imagePath: "assets/5.png"),
-                crd1(
+                build_secondCard(
                     text1: "Expense",
                     text2: "Rs.30,000",
                     imagePath: "assets/6.png")
@@ -139,7 +139,7 @@ class _AccountsState extends State<Accounts> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [crd2()],
+              children: [build_thirdCard()],
             ),
             SizedBox(
               height: h * 0.02,
@@ -162,7 +162,7 @@ class _AccountsState extends State<Accounts> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                cntr2(t1: "Expenses"),
+                build_secondRow(t1: "Expenses"),
                 SizedBox(
                   width: w * 0.05,
                 )
@@ -173,14 +173,14 @@ class _AccountsState extends State<Accounts> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [sb()],
+              children: [build_sizedBox()],
             ),
             SizedBox(
               height: h * 0.02,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [crd3()],
+              children: [build_fourthCard()],
             ),
             SizedBox(
               height: h * 0.035,
@@ -202,7 +202,7 @@ class _AccountsState extends State<Accounts> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [cntr3()],
+              children: [build_firstRow()],
             ),
             SizedBox(
               height: h * 0.03,
@@ -210,7 +210,8 @@ class _AccountsState extends State<Accounts> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                crd4(txt: "Get Report", clr: primaryColor, wt: FontWeight.w600)
+                build_fifthCard(
+                    txt: "Get Report", clr: primaryColor, wt: FontWeight.w600)
               ],
             ),
             SizedBox(
@@ -241,7 +242,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Card crd({Color? clr, String? txt}) {
+  Card build_firstCard({Color? clr, String? txt}) {
     return Card(
       elevation: 4,
       shape:
@@ -267,7 +268,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Card crd1(
+  Card build_secondCard(
       {Color? clr, String? text1, String? text2, required String imagePath}) {
     return Card(
       elevation: 4,
@@ -310,7 +311,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Card crd2({Color? clr2}) {
+  Card build_thirdCard({Color? clr2}) {
     return Card(
       elevation: 4,
       child: Container(
@@ -352,19 +353,19 @@ class _AccountsState extends State<Accounts> {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    cntr(
+                    build_padding(
                         image2: "assets/2.png",
                         txt1: "HariBaskar",
                         txt2: "Salary",
                         txt3: "₹ 15,000",
                         clr3: w1),
-                    cntr(
+                    build_padding(
                         image2: "assets/2.png",
                         txt1: "Vasanth",
                         txt2: "Fee",
                         txt3: "₹ 35,000",
                         clr3: r1),
-                    cntr(
+                    build_padding(
                         image2: "assets/2.png",
                         txt1: "Praveen",
                         txt2: "Bus Service",
@@ -392,7 +393,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Card crd3({Color? clr}) {
+  Card build_fourthCard({Color? clr}) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(h * 0.02),
@@ -410,7 +411,7 @@ class _AccountsState extends State<Accounts> {
             children: [
               buildFinancialItem(
                 icon: Icons.attach_money,
-                iconColor: Colors.green,
+                iconColor: r1,
                 label: 'Income',
                 amount: '₹ 110000',
               ),
@@ -431,7 +432,7 @@ class _AccountsState extends State<Accounts> {
               buildDivider(),
               buildFinancialItem(
                 icon: Icons.currency_rupee,
-                iconColor: Colors.blue,
+                iconColor: primaryColor,
                 label: 'Balance',
                 amount: '₹ 20000',
               ),
@@ -442,7 +443,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Card crd4({
+  Card build_fifthCard({
     Color? clr,
     String? txt,
     double? sizew,
@@ -479,7 +480,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Row cntr3({Color? color2}) {
+  Row build_firstRow({Color? color2}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -493,10 +494,11 @@ class _AccountsState extends State<Accounts> {
             GestureDetector(
               onTap: () => selectDate(context, true),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.grey),
+                  border: Border.all(color: color5),
                 ),
                 child: Text(
                   fromDate != null
@@ -520,10 +522,11 @@ class _AccountsState extends State<Accounts> {
             GestureDetector(
               onTap: () => selectDate(context, false),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.grey),
+                  border: Border.all(color: color5),
                 ),
                 child: Text(
                   toDate != null
@@ -539,7 +542,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Row cntr2({
+  Row build_secondRow({
     required String t1,
   }) {
     return Row(
@@ -560,7 +563,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  Padding cntr(
+  Padding build_padding(
       {Color? clr3, String? txt1, String? txt2, String? txt3, String? image2}) {
     return Padding(
       padding: EdgeInsets.all(h * 0.01),
@@ -600,7 +603,7 @@ class _AccountsState extends State<Accounts> {
     );
   }
 
-  SizedBox sb({Color? color}) {
+  SizedBox build_sizedBox({Color? color}) {
     return SizedBox(
       height: h * 0.35,
       width: w * 0.95,
@@ -643,7 +646,7 @@ class _AccountsState extends State<Accounts> {
           style: GoogleFonts.poppins(
             fontSize: h * 0.018,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: borderColor,
           ),
         ),
       ],

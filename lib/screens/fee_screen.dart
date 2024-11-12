@@ -56,7 +56,7 @@ class _FeeDetailsState extends State<FeeDetails> {
             ),
             Row(
               children: [
-                crd1(
+                build_secondCard(
                     clr: primaryColor,
                     txt: "Details :",
                     sizew: w * 0.3,
@@ -80,12 +80,12 @@ class _FeeDetailsState extends State<FeeDetails> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [cntr1()],
+              children: [build_firstContainer()],
             ),
             SizedBox(
               height: h * 0.03,
             ),
-            card1(
+            build_firstCard(
                 text1: "Jane Smith",
                 text2: "Paid",
                 text3: "Rs.13,000",
@@ -94,7 +94,7 @@ class _FeeDetailsState extends State<FeeDetails> {
             SizedBox(
               height: h * 0.005,
             ),
-            card1(
+            build_firstCard(
                 text1: "jane Smith",
                 text2: "Paid",
                 text3: "Rs.13,000",
@@ -103,7 +103,7 @@ class _FeeDetailsState extends State<FeeDetails> {
             SizedBox(
               height: h * 0.005,
             ),
-            card1(
+            build_firstCard(
                 text1: "jane Smith",
                 text2: "Paid",
                 text3: "Rs.13,000",
@@ -115,7 +115,7 @@ class _FeeDetailsState extends State<FeeDetails> {
     );
   }
 
-  Container cntr1({Color? color1}) {
+  Container build_firstContainer({Color? color1}) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: borderColor, width: 1.5),
@@ -140,17 +140,17 @@ class _FeeDetailsState extends State<FeeDetails> {
             ),
           );
         }).toList(),
-        style: GoogleFonts.poppins(color: Colors.black, fontSize: h * 0.018),
+        style: GoogleFonts.poppins(color: borderColor, fontSize: h * 0.018),
         icon: const Icon(Icons.arrow_drop_down),
         alignment: Alignment.center,
         underline: Container(
-          color: Colors.black,
+          color: borderColor,
         ),
       ),
     );
   }
 
-  Card card1({
+  Card build_firstCard({
     Color? clr,
     String? text1,
     String? text2,
@@ -167,16 +167,16 @@ class _FeeDetailsState extends State<FeeDetails> {
           width: w * 0.96,
           height: h * 0.11,
           decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [
-              Color(0xFF58FF3E),
-              Color(0xFF3590FF),
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+            gradient: const LinearGradient(
+                colors: [gradient3, gradient4],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
             borderRadius: BorderRadius.circular(h * 0.02),
           ),
           padding: EdgeInsets.all(w * 0.01), // Padding for the inner container
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white, // Inner background color
+              color: secondaryColor, // Inner background color
               borderRadius: BorderRadius.circular(h * 0.02),
             ),
             child: Padding(
@@ -239,7 +239,7 @@ class _FeeDetailsState extends State<FeeDetails> {
                           onPressed: () {
                             showDialog(
                                 context: context,
-                                builder: (context) => ad1(
+                                builder: (context) => build_alertDialog(
                                     txt1: "Jane Smith",
                                     txt2: "VII-C",
                                     txt3: "Partially Paid",
@@ -261,7 +261,7 @@ class _FeeDetailsState extends State<FeeDetails> {
         ));
   }
 
-  AlertDialog ad1({
+  AlertDialog build_alertDialog({
     required String txt1,
     required String txt2,
     required String txt3,
@@ -354,7 +354,7 @@ class _FeeDetailsState extends State<FeeDetails> {
         ]);
   }
 
-  Card crd1(
+  Card build_secondCard(
       {Color? clr, String? txt, double? sizew, FontWeight? wt, Color? clr1}) {
     return Card(
       elevation: 4,

@@ -57,7 +57,7 @@ class _AnnouncementState extends State<Announcement> {
             ),
             Row(
               children: [
-                crd1(
+                build_firstCard(
                     clr: primaryColor,
                     txt: "Details :",
                     sizew: w * 0.3,
@@ -100,7 +100,7 @@ class _AnnouncementState extends State<Announcement> {
                 SizedBox(
                   width: w * 0.13,
                 ),
-                second(
+                build_secondCard(
                   t1: "Circular :",
                   t2: "Annual day celebration at 25th at this month.",
                   cl1: secondaryColor,
@@ -126,11 +126,11 @@ class _AnnouncementState extends State<Announcement> {
             SizedBox(
               height: h * 0.02,
             ),
-            cntr1(txt1: "Title :"),
+            build_firstColumn(txt1: "Title :"),
             SizedBox(
               height: h * 0.01,
             ),
-            cntr2(),
+            build_firstRow(),
             SizedBox(
               height: h * 0.01,
             ),
@@ -146,19 +146,19 @@ class _AnnouncementState extends State<Announcement> {
             SizedBox(
               height: h * 0.005,
             ),
-            cntr3(),
+            build_secondRow(),
             SizedBox(
               height: h * 0.03,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                crd1(
+                build_firstCard(
                     clr: primaryColor,
                     txt: "Publish",
                     sizew: w * 0.25,
                     wt: FontWeight.w500),
-                crd1(
+                build_firstCard(
                     clr: color4,
                     txt: "Save Draft",
                     sizew: w * 0.33,
@@ -171,7 +171,7 @@ class _AnnouncementState extends State<Announcement> {
     );
   }
 
-  Column cntr1({
+  Column build_firstColumn({
     required String txt1,
   }) {
     return Column(
@@ -203,7 +203,7 @@ class _AnnouncementState extends State<Announcement> {
     );
   }
 
-  Row cntr2({Color? clr}) {
+  Row build_firstRow({Color? clr}) {
     return Row(
       children: [
         SizedBox(
@@ -241,7 +241,7 @@ class _AnnouncementState extends State<Announcement> {
     );
   }
 
-  Row cntr3({Color? clr}) {
+  Row build_secondRow({Color? clr}) {
     return Row(
       children: [
         SizedBox(
@@ -264,12 +264,12 @@ class _AnnouncementState extends State<Announcement> {
     );
   }
 
-  Card crd1(
+  Card build_firstCard(
       {Color? clr, String? txt, double? sizew, FontWeight? wt, Color? clr1}) {
     return Card(
       elevation: 4,
       shape:
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       color: clr,
       child: InkWell(
         onTap: () {},
@@ -296,10 +296,10 @@ class _AnnouncementState extends State<Announcement> {
 
   ListTile list(
       {Icon? icon,
-        String? text1,
-        double? size,
-        Color? clr,
-        void Function()? onpressed}) {
+      String? text1,
+      double? size,
+      Color? clr,
+      void Function()? onpressed}) {
     return ListTile(
       leading: icon,
       title: Text(
@@ -313,7 +313,7 @@ class _AnnouncementState extends State<Announcement> {
     );
   }
 
-  Card second({
+  Card build_secondCard({
     String? t1,
     String? t2,
     Color? cl1,
@@ -321,16 +321,16 @@ class _AnnouncementState extends State<Announcement> {
   }) {
     return Card(
       shape:
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       elevation: 10,
       child: Container(
         width: w * 0.83,
         height: h * 0.145,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Color(0xFF58FF3E),
-            Color(0xFF3590FF),
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: const LinearGradient(
+              colors: [gradient3, gradient4],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(h * 0.01),
         ),
         padding: EdgeInsets.all(w * 0.01), // Padding for the inner container

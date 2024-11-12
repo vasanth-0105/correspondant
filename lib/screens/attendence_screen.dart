@@ -117,7 +117,7 @@ class _AttendenceState extends State<Attendence> {
             ),
             Row(
               children: [
-                crd1(
+                build_secondCard(
                     clr: primaryColor,
                     txt: "Report :",
                     sizew: w * 0.3,
@@ -127,18 +127,18 @@ class _AttendenceState extends State<Attendence> {
             SizedBox(
               height: h * 0.05,
             ),
-            second(),
+            build_thirdCard(),
             SizedBox(
               height: h * 0.05,
             ),
-            column(clr1: primaryColor)
+            build_firstColumn(clr1: primaryColor)
           ],
         ),
       ),
     );
   }
 
-  Column column({Color? clr1}) {
+  Column build_firstColumn({Color? clr1}) {
     return Column(children: [
       Padding(
         padding: EdgeInsets.all(h * 0.0135),
@@ -151,44 +151,40 @@ class _AttendenceState extends State<Attendence> {
             3: FlexColumnWidth(1.7),
           },
           children: [
-            tableRow(
+            build_tableRow(
                 t1: "S.No",
                 t2: "Name",
                 t3: "Class & Section",
                 t4: "Date",
                 t5: "Status",
                 fontweight: FontWeight.bold),
-            tableRow(
+            build_tableRow(
                 t1: "1",
                 t2: "John Doe",
                 t3: "VII-C",
                 t4: "22/10/2024",
                 t5: "Present"),
-            tableRow(
+            build_tableRow(
                 t1: "2",
                 t2: "Jane Smith",
                 t3: "X-A",
                 t4: "22/10/2024",
                 t5: "Absent"),
-            tableRow(
+            build_tableRow(
                 t1: "3",
                 t2: "Jimmy",
                 t3: "V-B",
                 t4: "22/10/2024",
                 t5: "Absent"),
-            tableRow(
-                t1: "4",
-                t2: "Hari",
-                t3: "X-C",
-                t4: "22/10/2024",
-                t5: "Present")
+            build_tableRow(
+                t1: "4", t2: "Hari", t3: "X-C", t4: "22/10/2024", t5: "Present")
           ],
         ),
       )
     ]);
   }
 
-  TableRow tableRow(
+  TableRow build_tableRow(
       {required String t1,
       required String t2,
       required String t3,
@@ -253,7 +249,7 @@ class _AttendenceState extends State<Attendence> {
     );
   }
 
-  Card crd(
+  Card build_firstCard(
       {Color? clr,
       String? txt,
       double? sizew,
@@ -295,7 +291,7 @@ class _AttendenceState extends State<Attendence> {
     );
   }
 
-  Card crd1(
+  Card build_secondCard(
       {Color? clr, String? txt, double? sizew, FontWeight? wt, Color? clr1}) {
     return Card(
       elevation: 4,
@@ -325,7 +321,7 @@ class _AttendenceState extends State<Attendence> {
     );
   }
 
-  Card second({Color? clr}) {
+  Card build_thirdCard({Color? clr}) {
     return Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(h * 0.01)),
@@ -335,15 +331,15 @@ class _AttendenceState extends State<Attendence> {
           height: h * 0.45,
           decoration: BoxDecoration(
             gradient: const LinearGradient(colors: [
-              Color(0xFFFF6060),
-              Color(0xFF489AFE),
+              gradient1,
+              gradient2,
             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             borderRadius: BorderRadius.circular(h * 0.01),
           ),
           padding: EdgeInsets.all(w * 0.01), // Padding for the inner container
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white, // Inner background color
+              color: secondaryColor, // Inner background color
               borderRadius: BorderRadius.circular(h * 0.01),
             ),
             child: Padding(
@@ -394,10 +390,10 @@ class _AttendenceState extends State<Attendence> {
                                 );
                               }).toList(),
                               style: GoogleFonts.poppins(
-                                  color: Colors.black, fontSize: 16),
+                                  color: borderColor, fontSize: 16),
                               icon: const Icon(Icons.arrow_drop_down),
                               underline: Container(
-                                color: Colors.black,
+                                color: borderColor,
                               ),
                             ),
                           ),
@@ -451,10 +447,10 @@ class _AttendenceState extends State<Attendence> {
                                     );
                                   }).toList(),
                                   style: GoogleFonts.poppins(
-                                      color: Colors.black, fontSize: 16),
+                                      color: borderColor, fontSize: 16),
                                   icon: const Icon(Icons.arrow_drop_down),
                                   underline: Container(
-                                    color: Colors.black,
+                                    color: borderColor,
                                   ),
                                 ),
                               )
@@ -503,10 +499,10 @@ class _AttendenceState extends State<Attendence> {
                                     );
                                   }).toList(),
                                   style: GoogleFonts.poppins(
-                                      color: Colors.black, fontSize: 16),
+                                      color: borderColor, fontSize: 16),
                                   icon: const Icon(Icons.arrow_drop_down),
                                   underline: Container(
-                                    color: Colors.black,
+                                    color: borderColor,
                                   ),
                                 ),
                               )
@@ -580,11 +576,11 @@ class _AttendenceState extends State<Attendence> {
                       GestureDetector(
                         onTap: () => selectDate1(context, true),
                         child: Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: color5),
                           ),
                           child: Text(
                             customDate != null
@@ -617,7 +613,7 @@ class _AttendenceState extends State<Attendence> {
                                   horizontal: 12, vertical: 8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.grey),
+                                border: Border.all(color: color5),
                               ),
                               child: Text(
                                 fromDate != null
@@ -644,7 +640,7 @@ class _AttendenceState extends State<Attendence> {
                                   horizontal: 12, vertical: 8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.grey),
+                                border: Border.all(color: color5),
                               ),
                               child: Text(
                                 toDate != null
@@ -664,12 +660,12 @@ class _AttendenceState extends State<Attendence> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      crd1(
+                      build_secondCard(
                           clr: primaryColor,
                           txt: "Get Attendence",
                           sizew: w * 0.5,
                           wt: FontWeight.w500),
-                      crd(
+                      build_firstCard(
                           clr: color4,
                           txt: "Report",
                           sizew: w * 0.3,

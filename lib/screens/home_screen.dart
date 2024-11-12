@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: h * 0.03,
             ),
             Row(
-              children: [crd(clr: primaryColor, txt: "Welcome")],
+              children: [build_fourthCard(clr: primaryColor, txt: "Welcome")],
             ),
             Stack(
               alignment: Alignment.topCenter,
@@ -74,10 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.symmetric(horizontal: w * 0.01),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [
-                            Color(0xFF0474FD),
-                            Color(0xFF00F3FF),
-                          ],
+                          colors: [gradient3, gradient4],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                         ),
@@ -100,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: GoogleFonts.poppins(
                               fontSize: h * 0.025,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: borderColor,
                             ),
                           ),
                           Text(
@@ -108,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: GoogleFonts.poppins(
                               fontSize: h * 0.016,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              color: borderColor,
                             ),
                           ),
                         ],
@@ -128,14 +125,14 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: h * 0.018,
             ),
-            overView(
+            build_thirdCard(
                 t1: "Today Attendence",
                 t2: "Total strength : 5550",
                 t3: "Present : 3500",
                 t4: "Absent : 2050",
                 t5: "Present : 60%",
                 t6: "Absent : 40%",
-                cl: const Color(0xFF0494FD)),
+                cl: primaryColor),
             SizedBox(
               height: h * 0.005,
             ),
@@ -145,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: w * 0.0149,
                 ),
-                first(
+                build_firstCard(
                     t1: "Fee overview : ",
                     t2: "Amount Received : 5500",
                     t3: "Payers : 3",
@@ -158,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           MaterialPageRoute(
                               builder: (context) => const FeeDetails()));
                     }),
-                first(
+                build_firstCard(
                     t1: "Accounts Overview :",
                     t2: "Income : 65000",
                     t3: "Expense : 25000",
@@ -166,23 +163,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     cl: primaryColor,
                     s1: h * 0.017,
                     onpressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Accounts()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Accounts()));
                     })
               ],
             ),
             SizedBox(
               height: h * 0.005,
             ),
-            second(
+            build_secondCard(
                 t1: "Circular :",
                 t2: "Annual day celebration at 25th at this month.",
                 cl1: secondaryColor,
                 s1: h * 0.019,
                 cl: primaryColor,
                 onpressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Announcement()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Announcement()));
                 })
           ],
         ),
@@ -204,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Card first(
+  Card build_firstCard(
       {required String t1,
       required String t2,
       required String t3,
@@ -220,10 +221,10 @@ class _HomeScreenState extends State<HomeScreen> {
         width: w * 0.465,
         height: h * 0.18,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Color(0xFFFF6060),
-            Color(0xFF489AFE),
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: const LinearGradient(
+              colors: [gradient1, gradient2],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(h * 0.01),
         ),
         padding: EdgeInsets.all(w * 0.01), // Padding for the inner container
@@ -283,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Card second(
+  Card build_secondCard(
       {required String t1,
       required String t2,
       required Color cl,
@@ -298,10 +299,10 @@ class _HomeScreenState extends State<HomeScreen> {
         width: w * 0.95,
         height: h * 0.2,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Color(0xFFFF6060),
-            Color(0xFF489AFE),
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: const LinearGradient(
+              colors: [gradient1, gradient2],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(h * 0.01),
         ),
         padding: EdgeInsets.all(w * 0.01), // Padding for the inner container
@@ -371,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Card overView(
+  Card build_thirdCard(
       {required String t1,
       required String t2,
       required String t3,
@@ -387,10 +388,10 @@ class _HomeScreenState extends State<HomeScreen> {
         width: w * 0.95,
         height: h * 0.25,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Color(0xFFFF6060),
-            Color(0xFF489AFE),
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: const LinearGradient(
+              colors: [gradient1, gradient2],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(h * 0.01),
         ),
         padding: EdgeInsets.all(w * 0.01), // Padding for the inner container
@@ -432,7 +433,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   yValueMapper: (AttendencedataType data, _) =>
                                       data.value,
                                   pointColorMapper:
-                                      (AttendencedataType data, _) => data.color,
+                                      (AttendencedataType data, _) =>
+                                          data.color,
                                   innerRadius: '60%',
                                   dataLabelSettings:
                                       const DataLabelSettings(isVisible: false),
@@ -517,7 +519,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const Attendence()));
+                                        builder: (context) =>
+                                            const Attendence()));
                               },
                               icon: Icon(
                                 Icons.arrow_circle_right,
@@ -535,7 +538,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Card crd({Color? clr, String? txt}) {
+  Card build_fourthCard({Color? clr, String? txt}) {
     return Card(
       elevation: 4,
       shape:
