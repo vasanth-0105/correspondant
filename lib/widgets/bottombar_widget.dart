@@ -1,10 +1,11 @@
 import 'package:correspondant_application/comman_color/common_colors.dart';
-import 'package:correspondant_application/screens/announcement_screen.dart';
+import 'package:correspondant_application/screens/Announcement_screen.dart';
 import 'package:correspondant_application/screens/accounts_screen.dart';
 import 'package:correspondant_application/screens/fee_screen.dart';
 import 'package:correspondant_application/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../screens/announcement_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});

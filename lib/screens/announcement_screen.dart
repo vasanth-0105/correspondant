@@ -269,7 +269,7 @@ class _AnnouncementState extends State<Announcement> {
     return Card(
       elevation: 4,
       shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       color: clr,
       child: InkWell(
         onTap: () {},
@@ -296,10 +296,10 @@ class _AnnouncementState extends State<Announcement> {
 
   ListTile list(
       {Icon? icon,
-      String? text1,
-      double? size,
-      Color? clr,
-      void Function()? onpressed}) {
+        String? text1,
+        double? size,
+        Color? clr,
+        void Function()? onpressed}) {
     return ListTile(
       leading: icon,
       title: Text(
@@ -321,7 +321,7 @@ class _AnnouncementState extends State<Announcement> {
   }) {
     return Card(
       shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       elevation: 10,
       child: Container(
         width: w * 0.83,
