@@ -13,7 +13,25 @@ class FeeDetails extends StatefulWidget {
 
 class _FeeDetailsState extends State<FeeDetails> {
   var h, w;
+
   String? selectedValue;
+  String? selectedValue1;
+  String? selectedValue2;
+
+  final List<String> classItems = [
+    'Select',
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX',
+    'X'
+  ];
+  final List<String> secItems = ['Select', 'A', 'B', 'C', 'D'];
   final List<String> items = ['Select', 'Paid', 'Partially Paid', 'Overdue'];
   @override
   Widget build(BuildContext context) {
@@ -77,6 +95,10 @@ class _FeeDetailsState extends State<FeeDetails> {
             ),
             SizedBox(
               height: h * 0.04,
+            ),
+            build_firstRow(),
+            SizedBox(
+              height: h * 0.02,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -352,6 +374,119 @@ class _FeeDetailsState extends State<FeeDetails> {
               },
               child: textwidget(text: "Ok", s1: h * 0.02, wt: FontWeight.w800))
         ]);
+  }
+
+  Row build_firstRow({
+    Color? clr,
+  }) {
+    return Row(
+      children: [
+        Column(
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: w * 0.09,
+                ),
+                Text(
+                  "Class :",
+                  style: GoogleFonts.poppins(
+                    fontSize: h * 0.02,
+                  ),
+                ),
+                SizedBox(
+                  width: w * 0.019,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: borderColor, width: 1.5),
+                    borderRadius: BorderRadius.circular(h * 0.01),
+                  ),
+                  height: h * 0.05,
+                  width: w * 0.23,
+                  child: DropdownButton<String>(
+                    value: selectedValue1 ?? classItems[0],
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedValue1 = newValue;
+                      });
+                    },
+                    items: classItems
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(value),
+                        ),
+                      );
+                    }).toList(),
+                    style:
+                        GoogleFonts.poppins(color: borderColor, fontSize: 16),
+                    icon: const Icon(Icons.arrow_drop_down),
+                    underline: Container(
+                      color: borderColor,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+        SizedBox(
+          width: w * 0.05,
+        ),
+        Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  "Section :",
+                  style: GoogleFonts.poppins(
+                    fontSize: h * 0.02,
+                  ),
+                ),
+                SizedBox(
+                  width: w * 0.019,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: borderColor, width: 1.5),
+                    borderRadius: BorderRadius.circular(h * 0.01),
+                  ),
+                  height: h * 0.05,
+                  width: w * 0.22,
+                  child: DropdownButton<String>(
+                    value: selectedValue2 ?? secItems[0],
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedValue2 = newValue;
+                      });
+                    },
+                    items:
+                        secItems.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(value),
+                        ),
+                      );
+                    }).toList(),
+                    style:
+                        GoogleFonts.poppins(color: borderColor, fontSize: 16),
+                    icon: const Icon(Icons.arrow_drop_down),
+                    underline: Container(
+                      color: borderColor,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
   }
 
   Card build_secondCard(

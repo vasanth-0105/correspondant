@@ -1,4 +1,5 @@
 import 'package:correspondant_application/comman_color/common_colors.dart';
+import 'package:correspondant_application/widgets/pdf_widget.dart';
 import 'package:correspondant_application/widgets/appbar_widget.dart';
 import 'package:correspondant_application/widgets/textwidget.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _AttendenceState extends State<Attendence> {
   String? selectedValue;
   String? selectedValue1;
   String? selectedValue2;
+  String? selectedValue3;
   final List<String> items = [
     'Select',
     'School',
@@ -27,6 +29,7 @@ class _AttendenceState extends State<Attendence> {
     'Section',
     'Student',
   ];
+  final List<String> statusItems = ['Select', 'Present', 'Absent'];
   final List<String> classItems = [
     'Select',
     'I',
@@ -255,14 +258,15 @@ class _AttendenceState extends State<Attendence> {
       double? sizew,
       FontWeight? wt,
       IconData? icon,
-      Color? clr1}) {
+      Color? clr1,
+      void Function()? onpressed}) {
     return Card(
       elevation: 4,
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(h * 0.01)),
       color: clr,
       child: InkWell(
-        onTap: () {},
+        onTap: onpressed,
         child: SizedBox(
           height: h * 0.05,
           width: sizew,
@@ -328,7 +332,7 @@ class _AttendenceState extends State<Attendence> {
         elevation: 10,
         child: Container(
           width: w * 0.95,
-          height: h * 0.45,
+          height: h * 0.5,
           decoration: BoxDecoration(
             gradient: const LinearGradient(colors: [
               gradient1,
@@ -517,6 +521,55 @@ class _AttendenceState extends State<Attendence> {
                   ),
                   Row(
                     children: [
+                      Text(
+                        "Status :",
+                        style: GoogleFonts.poppins(
+                          fontSize: h * 0.02,
+                        ),
+                      ),
+                      SizedBox(
+                        width: w * 0.019,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: borderColor, width: 1.5),
+                          borderRadius: BorderRadius.circular(h * 0.01),
+                        ),
+                        height: h * 0.05,
+                        width: w * 0.25,
+                        child: DropdownButton<String>(
+                          value: selectedValue3 ?? statusItems[0],
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedValue3 = newValue;
+                            });
+                          },
+                          items: statusItems
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(value),
+                              ),
+                            );
+                          }).toList(),
+                          style: GoogleFonts.poppins(
+                              color: borderColor, fontSize: 16),
+                          icon: const Icon(Icons.arrow_drop_down),
+                          underline: Container(
+                            color: borderColor,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: h * 0.01,
+                  ),
+                  Row(
+                    children: [
                       Column(
                         children: [
                           Row(
@@ -671,7 +724,10 @@ class _AttendenceState extends State<Attendence> {
                           sizew: w * 0.3,
                           wt: FontWeight.w500,
                           icon: Icons.file_copy_rounded,
-                          clr1: borderColor)
+                          clr1: borderColor,
+                          onpressed: () {
+                            generatePdf();
+                          })
                     ],
                   )
                 ],
